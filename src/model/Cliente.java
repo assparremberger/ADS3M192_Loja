@@ -4,6 +4,9 @@ package model;
  * @author assparremberger
  */
 public class Cliente {
+    
+    public static final int PESSOA_FISICA = 0;
+    public static final int PESSOA_JURIDICA = 1;
    
     private int id;
     private String nome, email;
