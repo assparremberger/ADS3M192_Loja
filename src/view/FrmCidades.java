@@ -5,6 +5,10 @@
  */
 package view;
 
+import dao.CidadeDAO;
+import javax.swing.JOptionPane;
+import model.Cidade;
+
 /**
  *
  * @author assparremberger
@@ -16,6 +20,8 @@ public class FrmCidades extends javax.swing.JInternalFrame {
      */
     public FrmCidades() {
         initComponents();
+        lblCodigo.setVisible(false);
+        lblCodigoValor.setVisible(false);
     }
 
     /**
@@ -113,7 +119,20 @@ public class FrmCidades extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
+        String nome = txtNome.getText();
+        if (nome.isEmpty()) {
+            JOptionPane.showMessageDialog(this, 
+                    "Informe o nome da Cidade!");
+        }else{
+            Cidade cidade = new Cidade();
+            cidade.setNome( nome );
+            CidadeDAO.inserir( cidade );
+            // Só limpar
+            txtNome.setText("");
+            
+            //Fechar a tela
+            this.dispose();
+        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
 

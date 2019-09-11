@@ -32,30 +32,41 @@ public class CidadeDAO {
     
     public static List<Cidade> getCidades(){
         List<Cidade> lista = new ArrayList<>();
-        
         String query = "SELECT id, nome FROM cidades ORDER BY nome";
         ResultSet rs = Conexao.consultar( query );
         if( rs != null ){
-            
             try {
-                
                 while ( rs.next() ) {                    
                     Cidade cid = new Cidade();
                     cid.setId( rs.getInt( 1 ) );
                     cid.setNome( rs.getString( 2 ) );
                     lista.add(cid);
                 }
-                
             } catch (Exception e) {
                 
             }
-            
         }
-        
-        
-        
         return lista;
     }
     
+    public static Cidade getCidadeById( int idCidade ){
+ 
+        String query = "SELECT id, nome FROM cidades "
+                     + " WHERE id = " + idCidade;
+        ResultSet rs = Conexao.consultar( query );
+        if( rs != null ){
+            try {
+                rs.next();                   
+                Cidade cid = new Cidade();
+                cid.setId( rs.getInt( 1 ) );
+                cid.setNome( rs.getString( 2 ) );
+                return cid;
+            } catch (Exception e) {
+                return null;
+            }
+        }else{
+            return null;
+        }
+    }
     
 }
