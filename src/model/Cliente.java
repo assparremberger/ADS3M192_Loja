@@ -8,11 +8,20 @@ public class Cliente {
     public static final int PESSOA_FISICA = 0;
     public static final int PESSOA_JURIDICA = 1;
    
-    private int id;
+    private int id, tipo;
     private String nome, email;
     private Cidade cidade;
     private boolean receberEmail;
 
+    public int getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
+
+    
     public int getId() {
         return id;
     }

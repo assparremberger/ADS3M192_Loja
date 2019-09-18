@@ -5,6 +5,11 @@
  */
 package view;
 
+import dao.CidadeDAO;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import model.Cidade;
+
 /**
  *
  * @author assparremberger
@@ -17,6 +22,25 @@ public class FrmClientes extends javax.swing.JInternalFrame {
     public FrmClientes() {
         initComponents();
         esconder();
+        lblCodigo.setVisible(false);
+        lblCodigoValor.setVisible(false);
+    }
+    
+    private void carregarCidades(){
+        List<Cidade> listaCidades = CidadeDAO.getCidades();
+       
+        DefaultComboBoxModel model = 
+                new DefaultComboBoxModel();
+        Cidade fake = new Cidade();
+        fake.setId(0);
+        fake.setNome("Selecione...");
+        model.addElement(fake); 
+        
+        for (Cidade cidade : listaCidades) {
+            model.addElement( cidade );
+        }
+        cmbCidade.setModel( model );
+        
     }
     
     

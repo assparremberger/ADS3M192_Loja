@@ -3,7 +3,7 @@ package model;
  *
  * @author assparremberger
  */
-public class ClientePJ {
+public class ClientePJ extends Cliente{
     private String cnpj;
 
     public String getCnpj() {
