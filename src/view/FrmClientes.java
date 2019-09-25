@@ -6,9 +6,14 @@
 package view;
 
 import dao.CidadeDAO;
+import dao.ClienteDAO;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import model.Cidade;
+import model.Cliente;
+import model.ClientePF;
+import model.ClientePJ;
 
 /**
  *
@@ -24,10 +29,14 @@ public class FrmClientes extends javax.swing.JInternalFrame {
         esconder();
         lblCodigo.setVisible(false);
         lblCodigoValor.setVisible(false);
+        carregarCidades();
     }
     
     private void carregarCidades(){
         List<Cidade> listaCidades = CidadeDAO.getCidades();
+        
+//        JOptionPane.showMessageDialog(null, 
+//                "total de cidades: " + listaCidades.size());
        
         DefaultComboBoxModel model = 
                 new DefaultComboBoxModel();
@@ -256,9 +265,71 @@ public class FrmClientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_rbPFActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
+        String nome = txtNome.getText();
+        Cidade cid = (Cidade) cmbCidade.getSelectedItem();
+        String erro = "";
+        if( nome.isEmpty() ){
+            erro += "Nome\n";
+        }
+        if( cid.getId() == 0 ){
+            erro += "Cidade\n";
+        }
+        String cpf_cnpj = "";
+        if( rbPF.isSelected() ){
+            cpf_cnpj = txtCPF.getText();
+            if( cpf_cnpj.substring(13, 14).equals(" ")){
+                 erro += "CPF\n";
+            }
+        }else if( rbPJ.isSelected() ){
+            cpf_cnpj = txtCNPJ.getText();
+            if( cpf_cnpj.substring(17, 18).equals(" ")){
+                 erro += "CNPJ\n";
+            }
+        }else{
+            erro += "Tipo de Pessoa\n";
+        }
+        
+        if( ! erro.isEmpty() ){
+            JOptionPane.showMessageDialog(this, 
+                "Você esqueceu de preencher os seguintes campos:\n" 
+                + erro );
+        }else{
+            
+            if( rbPF.isSelected() ){
+                ClientePF pf = new ClientePF();
+                pf.setCpf( cpf_cnpj );
+                pf.setTipo( Cliente.PESSOA_FISICA );
+                pf.setNome( nome );
+                pf.setEmail( txtEmail.getText() );
+                pf.setReceberEmail( cbEmail.isSelected() );
+                pf.setCidade( cid );
+                ClienteDAO.inserir( pf );
+            }else{
+                ClientePJ pj = new ClientePJ();
+                pj.setCnpj( cpf_cnpj );
+                pj.setTipo( Cliente.PESSOA_JURIDICA );
+                pj.setNome( nome );
+                pj.setEmail( txtEmail.getText() );
+                pj.setReceberEmail( cbEmail.isSelected() );
+                pj.setCidade( cid );
+                ClienteDAO.inserir(pj );
+            }
+            limpar();
+        }
+       
     }//GEN-LAST:event_btnSalvarActionPerformed
 
+    private void limpar(){
+        txtNome.setText("");
+        txtCPF.setText("");
+        txtCNPJ.setText("");
+        txtEmail.setText("");
+        cmbCidade.setSelectedIndex( 0 );
+        cbEmail.setSelected( false );
+        buttonGroupTipo.clearSelection();
+        esconder();
+    }
+    
     private void rbPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPJActionPerformed
         lblCPF.setVisible(false);
         txtCPF.setVisible(false);

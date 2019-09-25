@@ -3,6 +3,7 @@ package dao;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import model.Cidade;
 
 /**
@@ -34,7 +35,9 @@ public class CidadeDAO {
         List<Cidade> lista = new ArrayList<>();
         String query = "SELECT id, nome FROM cidades ORDER BY nome";
         ResultSet rs = Conexao.consultar( query );
+        
         if( rs != null ){
+           
             try {
                 while ( rs.next() ) {                    
                     Cidade cid = new Cidade();

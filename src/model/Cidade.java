@@ -7,6 +7,13 @@ public class Cidade {
     private int id;
     private String nome;
 
+    @Override
+    public String toString() {
+        return nome; //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+
     public int getId() {
         return id;
     }
