@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/assparremberger/Documents/NetBeansProjects/ADS3M192_Loja/src/model/Cliente.java</file>
             <file>file:/C:/Users/assparremberger/Documents/NetBeansProjects/ADS3M192_Loja/src/dao/CidadeDAO.java</file>
+            <file>file:/C:/Users/assparremberger/Documents/NetBeansProjects/ADS3M192_Loja/src/model/Cidade.java</file>
             <file>file:/C:/Users/assparremberger/Documents/NetBeansProjects/ADS3M192_Loja/src/view/FrmClientes.java</file>
             <file>file:/C:/Users/assparremberger/Documents/NetBeansProjects/ADS3M192_Loja/src/dao/ClienteDAO.java</file>
-            <file>file:/C:/Users/assparremberger/Documents/NetBeansProjects/ADS3M192_Loja/src/view/TelaInicial.java</file>
             <file>file:/C:/Users/assparremberger/Documents/NetBeansProjects/ADS3M192_Loja/src/view/FrmCidades.java</file>
             <file>file:/C:/Users/assparremberger/Documents/NetBeansProjects/ADS3M192_Loja/src/dao/Conexao.java</file>
         </group>
